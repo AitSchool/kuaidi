@@ -22,7 +22,7 @@ Page({
     wx.scanCode({
       success (res) {
         let order_id = res.result;
-        order_id = Number(order_id);
+        order_id = order_id.trim();
         let url = `/pages/detail/detail?order_id=${order_id}`;
         wx.navigateTo({ url });
       }

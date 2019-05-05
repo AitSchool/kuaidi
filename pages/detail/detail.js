@@ -2,7 +2,8 @@ Page({
   data: {
     order_id: '',
     detailList: [],
-    toastText: '加载中'
+    toastText: '加载中',
+    expName: '',
   },
   onLoad: function(options) {
     let order_id = options.order_id;
@@ -10,20 +11,25 @@ Page({
   },
   getData: function(order_id) {
     console.log(order_id)
-    let url = 'https://www.kuaidi100.com/query';
-    let company = 'jd';
+    let url = 'https://wuliu.market.alicloudapi.com/kdi';
+    let company = 'JD';
     wx.request({
+      header: {
+        "Authorization":"APPCODE ALICODE"
+      },
       url: url,
       data:{
         type:company,
-        postid:order_id
+        no: order_id
       },
       success:(res)=>{
         console.log(res)
-        if(res.data.data.length){
+        console.log(res.data.result.list)
+        if(res.data.status == 0){
           this.setData({
-            detailList:res.data.data,
-            order_id:order_id
+            detailList:res.data.result.list,
+            order_id:order_id,
+            expName: res.data.result.expName
           })
         }else{
           this.setData({

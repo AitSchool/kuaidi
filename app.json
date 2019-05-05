@@ -6,5 +6,6 @@
   "window": {
     "navigationBarBackgroundColor": "#ff5a5f",
     "navigationBarTitleText": "京东快递查询"
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }
